@@ -994,6 +994,78 @@ window.TOPIC_CONFIG = {
           "Force primary outage and confirm backup tunnel activation.",
           "Verify application recovery and return-to-primary behavior."
         ]
+      },
+      "sec-11": {
+        "title": "FortiGate - Phase 1 and Phase 2",
+        "lang": "FortiGate CLI",
+        "code": "config vpn ipsec phase1-interface\n  edit \"S2S-HQ\"\n    set interface \"wan1\"\n    set ike-version 2\n    set remote-gw 203.0.113.10\n    set proposal aes256-sha256\n    set psksecret <shared-secret>\n  next\nend\n\nconfig vpn ipsec phase2-interface\n  edit \"S2S-HQ-P2\"\n    set phase1name \"S2S-HQ\"\n    set proposal aes256-sha256\n    set src-subnet 10.10.10.0 255.255.255.0\n    set dst-subnet 172.16.50.0 255.255.255.0\n    set keylifeseconds 3600\n  next\nend",
+        "steps": [
+          "Use phase 1 to define the IKEv2 peer, interface, and crypto proposal.",
+          "Use phase 2 to bind the interesting traffic selectors and ESP proposal.",
+          "Keep the PSK, proposals, and lifetimes aligned on both peers.",
+          "Validate that the source and destination subnets match the intended encryption domain.",
+          "Confirm the tunnel comes up cleanly before routing application traffic through it."
+        ]
+      },
+      "sec-12": {
+        "title": "Palo Alto - Phase 1 and Phase 2",
+        "lang": "PAN-OS CLI",
+        "code": "set network ike crypto-profiles ike-crypto-profiles IKEV2-PROFILE authentication sha256 encryption aes-256-cbc dh-group group14 lifetime hour 8\nset network ike gateway GW-HQ authentication pre-shared-key key <shared-secret>\nset network ike gateway GW-HQ local-address interface ethernet1/1 ip 198.51.100.20\nset network ike gateway GW-HQ peer-address ip 203.0.113.10\nset network ike gateway GW-HQ protocol ikev2 ike-crypto-profile IKEV2-PROFILE\n\nset network ipsec crypto-profiles ipsec-crypto-profiles IPSEC-PROFILE esp authentication sha256 encryption aes-256-cbc lifetime hour 1\nset network tunnel ipsec-tunnel TUN-HQ auto-key ike-gateway GW-HQ ipsec-crypto-profile IPSEC-PROFILE\nset network tunnel tunnel-interface tunnel.10\nset network tunnel ipsec-tunnel TUN-HQ tunnel-interface tunnel.10",
+        "steps": [
+          "Phase 1 is the IKE gateway plus IKE crypto profile that negotiates the secure channel.",
+          "Phase 2 is the IPsec crypto profile that defines ESP protection for data traffic.",
+          "Tie the tunnel interface to the IPsec tunnel so routing stays simple and route-based.",
+          "Match lifetimes and transforms with the remote peer to avoid negotiation failures.",
+          "Use proxy-ID or traffic selector design consistently when the peer requires it."
+        ]
+      },
+      "sec-13": {
+        "title": "Cisco - Phase 1 and Phase 2",
+        "lang": "Cisco IOS-XE",
+        "code": "crypto ikev2 proposal IKEV2-PROP\n encryption aes-cbc-256\n integrity sha256\n group 14\n\ncrypto ikev2 policy IKEV2-POL\n proposal IKEV2-PROP\n\ncrypto ikev2 keyring KR-HQ\n peer HQ-PEER\n  address 203.0.113.10\n  pre-shared-key <shared-secret>\n\ncrypto ikev2 profile IKEV2-PROFILE\n match identity remote address 203.0.113.10 255.255.255.255\n authentication local pre-share\n authentication remote pre-share\n keyring local KR-HQ\n\ncrypto ipsec transform-set TS-AES256-SHA esp-aes 256 esp-sha256-hmac\n mode tunnel\n\ncrypto ipsec profile IPSEC-PROFILE\n set transform-set TS-AES256-SHA\n set ikev2-profile IKEV2-PROFILE",
+        "steps": [
+          "Phase 1 starts with the IKEv2 proposal, policy, keyring, and profile.",
+          "Phase 2 uses the IPsec transform set and profile to protect data packets.",
+          "Keep peer identity and PSK values aligned with the remote device.",
+          "Use route-based tunnel interfaces or crypto maps consistently with the design.",
+          "Verify both SA negotiation and route reachability after applying the config."
+        ]
+      },
+      "sec-14": {
+        "title": "Azure - Phase 1 and Phase 2",
+        "lang": "Azure PowerShell",
+        "code": "$policy = New-AzIpsecPolicy `\n  -IkeEncryption AES256 `\n  -IkeIntegrity SHA256 `\n  -DhGroup DHGroup14 `\n  -IpsecEncryption AES256 `\n  -IpsecIntegrity SHA256 `\n  -PfsGroup PFS14 `\n  -SALifeTimeSeconds 28800 `\n  -SADataSizeKilobytes 102400000\n\nNew-AzVirtualNetworkGatewayConnection `\n  -Name 'conn-hq' `\n  -VirtualNetworkGateway1 $vng `\n  -LocalNetworkGateway2 $lng `\n  -ConnectionType IPsec `\n  -RoutingWeight 10 `\n  -SharedKey <shared-secret> `\n  -IpsecPolicies $policy",
+        "steps": [
+          "Use the IPsec policy object to define IKE and IPsec parameters together.",
+          "Treat IKE encryption, integrity, and DH group as the phase 1 baseline.",
+          "Treat IPsec encryption, integrity, and PFS group as the phase 2 baseline.",
+          "Attach the policy to the connection so the gateway negotiates the intended settings.",
+          "Keep the values consistent with the on-prem peer and revalidate after changes."
+        ]
+      },
+      "sec-15": {
+        "title": "AWS - Phase 1 and Phase 2",
+        "lang": "Terraform",
+        "code": "resource \"aws_vpn_connection\" \"hq\" {\n  customer_gateway_id = aws_customer_gateway.hq.id\n  transit_gateway_id   = aws_ec2_transit_gateway.core.id\n  type                 = \"ipsec.1\"\n\n  tunnel1_ike_versions                  = [\"ikev2\"]\n  tunnel1_phase1_encryption_algorithms  = [\"AES256\"]\n  tunnel1_phase1_integrity_algorithms    = [\"SHA2-256\"]\n  tunnel1_phase1_dh_group_numbers        = [14]\n  tunnel1_phase1_lifetime_seconds        = 28800\n  tunnel1_phase2_encryption_algorithms   = [\"AES256\"]\n  tunnel1_phase2_integrity_algorithms    = [\"SHA2-256\"]\n  tunnel1_phase2_dh_group_numbers        = [14]\n  tunnel1_phase2_lifetime_seconds        = 3600\n}",
+        "steps": [
+          "Phase 1 is modeled with IKE version, encryption, integrity, DH group, and lifetime.",
+          "Phase 2 is modeled with ESP encryption, integrity, DH group, and lifetime.",
+          "Use Terraform so the tunnel parameters stay versioned and repeatable.",
+          "Keep the customer gateway and transit gateway design aligned with routing needs.",
+          "Validate the generated tunnel options against the peer device before rollout."
+        ]
+      },
+      "sec-16": {
+        "title": "GCP - Phase 1 and Phase 2",
+        "lang": "gcloud",
+        "code": "gcloud compute vpn-gateways create ha-vpn-gw --region=us-central1\n\ngcloud compute vpn-tunnels create vpn-hq-tunnel-a \\\n  --region=us-central1 \\\n  --ike-version=2 \\\n  --shared-secret=<shared-secret> \\\n  --peer-address=203.0.113.10 \\\n  --local-traffic-selector=10.10.10.0/24 \\\n  --remote-traffic-selector=172.16.50.0/24\n\n# Phase 1: IKEv2 negotiation and authentication\n# Phase 2: traffic selectors and IPsec SA protection",
+        "steps": [
+          "Create the HA VPN gateway first, then attach the tunnel to it.",
+          "Use IKEv2 for phase 1 negotiation and shared secret authentication.",
+          "Define local and remote traffic selectors to map phase 2 traffic flow.",
+          "Keep the selectors consistent with the remote peer's encryption domain.",
+          "Confirm routes and tunnel status after provisioning the connection."
+        ]
       }
     },
     "commands": {
@@ -1058,7 +1130,13 @@ window.TOPIC_CONFIG = {
       "sec-7": "Lab-et VPN duhet te trajtojne selector mismatch, NAT conflict dhe unstable tunnel negotiation. Praktika duhet te ndjeke nje rend metodik kontrollesh.",
       "sec-8": "Quiz VPN duhet te testoje kuptimin e marredhenies mes crypto settings, routing policy dhe performances se aplikacionit.",
       "sec-9": "Troubleshooting ne VPN ndjek renditjen: SA state, selectors, NAT, routes, pastaj aplikacioni. Evidencat duhet te ruhen per analizat pas incidentit.",
-      "sec-10": "Vleresimi final VPN duhet te provoje qe kandidati mund te siguroje lidhje te qendrueshme, te sigurta dhe te auditueshme ne production."
+      "sec-10": "Vleresimi final VPN duhet te provoje qe kandidati mund te siguroje lidhje te qendrueshme, te sigurta dhe te auditueshme ne production.",
+      "sec-11": "FortiGate phase 1 dhe phase 2 duhen mbajtur te ndara qarte: phase 1 per IKE negotiation, phase 2 per selectors dhe trafikun qe do te kodohet.",
+      "sec-12": "Palo Alto perdor IKE gateway per phase 1 dhe IPsec tunnel per phase 2. Kjo ndarje e ben dizajnin me te paster per operim dhe auditim.",
+      "sec-13": "Ne Cisco, phase 1 perfshin IKEv2 proposal, policy dhe profile, ndersa phase 2 mban transform-set dhe IPsec profile per trafikun e tunelit.",
+      "sec-14": "Ne Azure, IPsec policy e bashkon phase 1 dhe phase 2 ne nje objekt te vetem, qe e ben konfigurimin te standardizuar dhe te lehte per automatizim.",
+      "sec-15": "Ne AWS, tunnel options te VPN connection ruajne parametrat e phase 1 dhe phase 2 ne menyre te qarte dhe te versionueshme ne IaC.",
+      "sec-16": "Ne GCP, Cloud VPN shpreh phase 1 me IKEv2 dhe phase 2 me traffic selectors. Kjo qasje eshte e pershtatshme per route-based designs."
     }
   }
 };

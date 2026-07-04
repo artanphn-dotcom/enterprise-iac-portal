@@ -108,7 +108,27 @@
 
           <button class="btn btn-outline" type="button" onclick="gradeExam('exam-vpn', ['b','a','c'])">Kontrollo Rezultatin</button>
           <div class="quiz-feedback" id="exam-vpn-feedback"></div>
-        </div>        <div class="table-container">
+        </div>
+
+        <h2 id="sec-11" class="sub-title">11. FortiGate VPN Configuration Example</h2>
+        <p>Shembulli me poshte tregon ndarjen tipike mes phase 1 dhe phase 2 per FortiGate. Phase 1 mban parametrat e IKE negotiation, ndersa phase 2 mban selectors dhe policy te trafikut qe do te kaloje ne tunel.</p>
+
+        <h2 id="sec-12" class="sub-title">12. Palo Alto VPN Configuration Example</h2>
+        <p>Ne Palo Alto, phase 1 vendoset permes IKE gateway dhe crypto profile, ndersa phase 2 lidhet me IPsec tunnel dhe proxy-ID apo traffic selectors sipas dizajnit.</p>
+
+        <h2 id="sec-13" class="sub-title">13. Cisco VPN Configuration Example</h2>
+        <p>Ne Cisco, phase 1 definohet me IKEv2 proposal, policy dhe profile, ndersa phase 2 realizohet me IPsec transform-set, profile dhe crypto map ose tunnel interface.</p>
+
+        <h2 id="sec-14" class="sub-title">14. Azure VPN Gateway Configuration Example</h2>
+        <p>Azure e shpreh phase 1 dhe phase 2 permes IPsec policy objects. Kjo e ben konfigurimin te qarte, te versionuar dhe te lehte per automatizim ne mjedise enterprise.</p>
+
+        <h2 id="sec-15" class="sub-title">15. AWS Site-to-Site VPN Configuration Example</h2>
+        <p>Ne AWS, phase 1 dhe phase 2 parametrat ruhen si tunnel options per VPN connection ose ne Terraform. Kjo eshte menyra me praktike per standardizim dhe repeatability.</p>
+
+        <h2 id="sec-16" class="sub-title">16. GCP Cloud VPN Configuration Example</h2>
+        <p>Ne Google Cloud, Cloud VPN dhe HA VPN mbeshteten ne IKEv2 dhe traffic selectors. Shembulli me poshte e tregon mapping-un praktik mes phase 1 dhe phase 2 ne nje setup route-based.</p>
+
+        <div class="table-container">
           <table>
             <thead><tr><th>Domain</th><th>What to Standardize</th><th>Target Outcome</th></tr></thead>
             <tbody>
