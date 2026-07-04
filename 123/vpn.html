@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="sq" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VPN - Enterprise Track</title>
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-icon">VPN</div>
+          <div>
+            <span class="logo-text">VPN</span>
+            <span class="logo-sub">Secure Tunnel Operations</span>
+          </div>
+        </div>
+        <div class="search-wrapper"><a class="btn btn-outline" href="../menu.html" style="text-decoration:none;">← Menu</a></div>
+      </div>
+      <nav class="sidebar-menu" id="sidebar-menu"></nav>
+    </aside>
+    <main class="main-workspace">
+      <header class="app-header">
+        <div class="header-title-section"><button class="btn-theme-toggle" id="btn-menu-toggle" style="display:none;">☰</button><h2 class="header-active-chapter-name">VPN</h2></div>
+        <div class="header-actions"><button class="btn btn-outline" onclick="location.href='../menu.html'">Menu</button><button class="btn-theme-toggle" id="btn-theme-toggle" title="Ndrysho Temen"><svg class="sun-icon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3"></path></svg></button></div>
+      </header>
+      <section class="content-area"><div class="content-inner">
+        <div class="welcome-screen"><div class="welcome-badge">Secure Connectivity</div><h1 class="welcome-title">VPN</h1><p class="welcome-desc">Detaje enterprise per design, hardening dhe troubleshooting te tuneleve VPN.</p></div>
+
+        <h2 id="sec-1" class="sub-title">1. Use-Case Driven VPN Design</h2>
+        <p>Ndaj qarte site-to-site, remote access dhe third-party partner tunnels sipas profileve te riskut. Cdo kategori duhet te kete policy te vecante autentikimi dhe route control. Ndarja e sakte shmang konfigurime te perziera qe krijojne risk.</p>
+
+        <h2 id="sec-2" class="sub-title">2. Cryptographic Baseline</h2>
+        <p>Standardizo IKEv2 me AES-256, SHA-2 dhe PFS ku kerkohet. Defino key lifetime dhe rotation policy sipas standardeve te organizates. Baseline i qarte kriptografik ul gabimet ne integrim me peers.</p>
+
+        <h2 id="sec-3" class="sub-title">3. Routing and Traffic Control</h2>
+        <p>Percakto qarte cila trafik kalon ne tunel dhe cila jo, duke perdorur selectors ose route-based policy. Kur tunelet jane multiple, vendos prioritet dhe fallback behavior te dokumentuar. Kjo shmang blackholes ne raste incidenti.</p>
+
+        <h2 id="sec-4" class="sub-title">4. High Availability Patterns</h2>
+        <p>Per lidhje kritike perdor dual ISPs, dual tunnels ose active/standby me health checks. Testo failover dhe failback ne intervale fikse, jo vetem gjate outage-ve. Testimi periodik garanton qe dizajni funksionon ne praktike.</p>
+
+        <h2 id="sec-5" class="sub-title">5. Monitoring and Alerting</h2>
+        <p>Monitoro tunnel state, rekey failures, latency dhe packet loss me alarme te qarta. Korrelo log-et me eventet e ndryshimeve ne pajisje. Pa observability te vazhdueshme, problemet e VPN zbulohen me vone nga perdoruesit.</p>
+
+        <h2 id="sec-6" class="sub-title">6. Incident Response Workflow</h2>
+        <p>Nis diagnostikimin nga IKE negotiation, vazhdo me IPsec SA, route table dhe ne fund policy kontrollin. Mbaj checklist standard per cdo incident qe ekipi te punoje me nje metodologji te perbashket. Kjo ul kohe rikthimi dhe shmang prova te rastit.</p>
+
+                <h2 id="sec-7" class="sub-title">7. Lab Exercises</h2>
+        <h3 class="sub-sub-title">Lab 1: Site-to-site resilient setup</h3>
+        <ul>
+          <li>Konfiguro dual tunnels me profile te standardizuara IKE/IPsec.</li>
+          <li>Vendos route preference dhe fallback behavior.</li>
+          <li>Testo failover dhe failback me prova reale trafiku.</li>
+        </ul>
+        <h3 class="sub-sub-title">Lab 2: Monitoring and incident drill</h3>
+        <ul>
+          <li>Krijo alarms per rekey failure dhe packet loss.</li>
+          <li>Simulo tunnel outage dhe ndiq runbook-un.</li>
+          <li>Regjistro kohen e rikthimit dhe pikat per permiresim.</li>
+        </ul>
+
+        <h2 id="sec-8" class="sub-title">8. Knowledge Check</h2>
+        <div class="quiz-widget" id="quiz-vpn-deep">
+          <div class="quiz-title">Pyetje</div>
+          <div class="quiz-question">Cili hap vjen menjehere pas verifikimit te IKE negotiation ne troubleshooting?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer('quiz-vpn-deep', 0, true)"><input type="radio" class="quiz-option-radio"><span>A) Kontrolli i IPsec SA</span></div>
+            <div class="quiz-option" onclick="checkAnswer('quiz-vpn-deep', 1, false)"><input type="radio" class="quiz-option-radio"><span>B) Ndryshimi i hostname</span></div>
+            <div class="quiz-option" onclick="checkAnswer('quiz-vpn-deep', 2, false)"><input type="radio" class="quiz-option-radio"><span>C) Fikja e logs</span></div>
+          </div>
+          <div class="quiz-feedback" id="quiz-vpn-deep-feedback"></div>
+        </div>
+        
+        <h2 id="sec-9" class="sub-title">9. Scenario-Based Troubleshooting</h2>
+        <h3 class="sub-sub-title">Skenari</h3>
+        <p>Tuneli site-to-site ngrihet, por trafiku i aplikacionit nuk kalon</p>
+        <ol>
+          <li>Verifiko selectors/interesting traffic dhe route table ne te dy anet.</li>
+          <li>Kontrollo IPsec SA counters dhe policy encryption domain.</li>
+          <li>Krahaso NAT exemptions dhe test failback ne link sekondar.</li>
+        </ol>
+
+        <h2 id="sec-10" class="sub-title">10. Exam Mode</h2>
+        <div class="quiz-widget" id="exam-vpn">
+          <div class="quiz-title">Mini Exam</div>
+          <div class="quiz-question">1) Pas IKE negotiation, cili hap vjen zakonisht?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q1" value="a" class="quiz-option-radio"><span>A) Ndryshim hostname</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q1" value="b" class="quiz-option-radio"><span>B) Kontrolli i IPsec SA</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q1" value="c" class="quiz-option-radio"><span>C) Fikja e monitorimit</span></label>
+          </div>
+
+          <div class="quiz-question">2) Per disponueshmeri te larte ne VPN, cfare rekomandohet?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q2" value="a" class="quiz-option-radio"><span>A) Dual tunnels + health checks</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q2" value="b" class="quiz-option-radio"><span>B) Nje tunnel pa monitorim</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q2" value="c" class="quiz-option-radio"><span>C) Pa test failover</span></label>
+          </div>
+
+          <div class="quiz-question">3) Cili indikator ndihmon ne diagnostikim te shpejte?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q3" value="a" class="quiz-option-radio"><span>A) Vetem uptime i pajisjes</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q3" value="b" class="quiz-option-radio"><span>B) Ngjyra e dashboard-it</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-vpn-q3" value="c" class="quiz-option-radio"><span>C) SA counters dhe packet loss metrics</span></label>
+          </div>
+
+          <button class="btn btn-outline" type="button" onclick="gradeExam('exam-vpn', ['b','a','c'])">Kontrollo Rezultatin</button>
+          <div class="quiz-feedback" id="exam-vpn-feedback"></div>
+        </div>        <div class="table-container">
+          <table>
+            <thead><tr><th>Domain</th><th>What to Standardize</th><th>Target Outcome</th></tr></thead>
+            <tbody>
+              <tr><td>Design</td><td>Templates, naming, environment separation</td><td>Predictable deployments</td></tr>
+              <tr><td>Security</td><td>Least privilege, policy review, logging</td><td>Lower operational risk</td></tr>
+              <tr><td>Operations</td><td>Runbooks, alerts, rollback strategy</td><td>Faster incident recovery</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-container"><div class="code-header"><div class="code-title">VPN Diagnostic Commands</div><span class="code-lang-badge">CLI</span></div><pre><code>show vpn-sessiondb summary
+show crypto ikev2 sa
+show crypto ipsec sa</code></pre></div>
+
+        <div class="callout callout-info"><div class="callout-title">Practical Checklist</div><div class="callout-content">Dokumento baseline, valido ndryshimet ne mjedis test, vendos approval gate, monitoro pas deployment-it dhe mbaj rollback plan gjithmone gati.</div></div>
+      </div></section>
+    </main>
+  </div>
+  <script src="../data/topic-config.js"></script>
+  <script src="../data/topic-config-loader.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="sq" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cisco Routers - Enterprise Track</title>
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-icon">CR</div>
+          <div>
+            <span class="logo-text">Cisco Routers</span>
+            <span class="logo-sub">WAN Core and Routing Policy</span>
+          </div>
+        </div>
+        <div class="search-wrapper"><a class="btn btn-outline" href="../menu.html" style="text-decoration:none;">← Menu</a></div>
+      </div>
+      <nav class="sidebar-menu" id="sidebar-menu"></nav>
+    </aside>
+    <main class="main-workspace">
+      <header class="app-header">
+        <div class="header-title-section"><button class="btn-theme-toggle" id="btn-menu-toggle" style="display:none;">☰</button><h2 class="header-active-chapter-name">Cisco Routers</h2></div>
+        <div class="header-actions"><button class="btn btn-outline" onclick="location.href='../menu.html'">Menu</button><button class="btn-theme-toggle" id="btn-theme-toggle" title="Ndrysho Temen"><svg class="sun-icon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3"></path></svg></button></div>
+      </header>
+      <section class="content-area"><div class="content-inner">
+        <div class="welcome-screen"><div class="welcome-badge">Routing</div><h1 class="welcome-title">Cisco Routers</h1><p class="welcome-desc">Detaje enterprise per OSPF/BGP design, failover dhe observability ne routera Cisco.</p></div>
+
+        <h2 id="sec-1" class="sub-title">1. Routing Architecture Baseline</h2>
+        <p>Defino hierarki te qarte: access, distribution dhe edge. Puno me summarization ne kufijte e zones per te ulur churn ne tabelat e routing-ut. Vendos standarde per addressing dhe loopback allocation qe troubleshooting te jete i parashikueshem.</p>
+
+        <h2 id="sec-2" class="sub-title">2. OSPF Design and Stability</h2>
+        <p>Perdor area design te qarte me ABR ne pikat e duhura dhe kufizo LSA flood ku eshte e mundur. Monitoro adjacency flaps, dead timers dhe CPU spikes ne periudhat e ndryshimeve. OSPF duhet trajtuar si sistem operational, jo vetem si konfigurim i pare.</p>
+
+        <h2 id="sec-3" class="sub-title">3. BGP Policy Engineering</h2>
+        <p>Puno me prefix-lists, route-maps dhe communities per kontroll te trafikut hyrje/dalje. Defino policy per local-pref, MED dhe prepending sipas objektivave te biznesit. Pa policy discipline, BGP sjell sjellje te paparashikuara ne edge.</p>
+
+        <h2 id="sec-4" class="sub-title">4. Redundancy and Failover</h2>
+        <p>Kombino dual links me BFD dhe IP SLA tracking per failover te shpejte. Testo failback behavior qe trafiku te rikthehet ne rruge primare pa flapping. Cdo skenar redundance duhet dokumentuar me shembuj konkret te expected behavior.</p>
+
+        <h2 id="sec-5" class="sub-title">5. Security Hardening</h2>
+        <p>Mbro management plane me ACL, SSH modern ciphers dhe AAA central. Limito protokollet e panevojshme ne interfaces dhe aktivizo logging te eventeve kritike. Routeri ne edge duhet te trajtohet si asset sigurie, jo vetem si pajisje rrugezimi.</p>
+
+        <h2 id="sec-6" class="sub-title">6. Monitoring and Runbooks</h2>
+        <p>Aktivizo telemetry me NetFlow/IPFIX dhe threshold-based alerting per packet loss e latency. Nderto runbooks per outage te ISP, route leak dhe flapping neighbors. Runbook i mire ul ndjeshem kohen e rikthimit te sherbimit.</p>
+
+                <h2 id="sec-7" class="sub-title">7. Lab Exercises</h2>
+        <h3 class="sub-sub-title">Lab 1: OSPF stability</h3>
+        <ul>
+          <li>Konfiguro area design me ABR dhe summarization.</li>
+          <li>Simulo link flap dhe mat convergence time.</li>
+          <li>Dokumento alarms dhe remediation steps.</li>
+        </ul>
+        <h3 class="sub-sub-title">Lab 2: BGP edge policy</h3>
+        <ul>
+          <li>Apliko prefix-lists dhe route-maps per inbound/outbound control.</li>
+          <li>Testo local-pref, MED dhe prepending sjellje.</li>
+          <li>Verifiko route table consistency pas ndryshimit.</li>
+        </ul>
+
+        <h2 id="sec-8" class="sub-title">8. Knowledge Check</h2>
+        <div class="quiz-widget" id="quiz-routers-deep">
+          <div class="quiz-title">Pyetje</div>
+          <div class="quiz-question">Cili element eshte kritik per kontroll trafiku ne BGP?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer('quiz-routers-deep', 0, true)"><input type="radio" class="quiz-option-radio"><span>A) Route-maps dhe prefix-lists</span></div>
+            <div class="quiz-option" onclick="checkAnswer('quiz-routers-deep', 1, false)"><input type="radio" class="quiz-option-radio"><span>B) Vetem static DNS</span></div>
+            <div class="quiz-option" onclick="checkAnswer('quiz-routers-deep', 2, false)"><input type="radio" class="quiz-option-radio"><span>C) Nderrimi i hostname</span></div>
+          </div>
+          <div class="quiz-feedback" id="quiz-routers-deep-feedback"></div>
+        </div>
+        
+        <h2 id="sec-9" class="sub-title">9. Scenario-Based Troubleshooting</h2>
+        <h3 class="sub-sub-title">Skenari</h3>
+        <p>Neighbor BGP bie periodikisht dhe trafiku devijon ne rruge jo optimale</p>
+        <ol>
+          <li>Kontrollo timers, BFD status dhe errors ne interface uplink.</li>
+          <li>Verifiko route-map/prefix-list changes dhe policy conflicts.</li>
+          <li>Krahaso telemetry para/pas incidentit dhe stabilizo me rollback te kontrolluar.</li>
+        </ol>
+
+        <h2 id="sec-10" class="sub-title">10. Exam Mode</h2>
+        <div class="quiz-widget" id="exam-routers">
+          <div class="quiz-title">Mini Exam</div>
+          <div class="quiz-question">1) Cili mjet kontrollon prefikset e lejuara ne BGP?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-routers-q1" value="a" class="quiz-option-radio"><span>A) Prefix-list</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-routers-q1" value="b" class="quiz-option-radio"><span>B) NTP</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-routers-q1" value="c" class="quiz-option-radio"><span>C) LLDP vetem</span></label>
+          </div>
+
+          <div class="quiz-question">2) Per convergence me te shpejte ne failure, cfare ndihmon?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-routers-q2" value="a" class="quiz-option-radio"><span>A) Fikja e alarms</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-routers-q2" value="b" class="quiz-option-radio"><span>B) Heqja e route policies</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-routers-q2" value="c" class="quiz-option-radio"><span>C) BFD dhe test failover periodik</span></label>
+          </div>
+
+          <div class="quiz-question">3) Per cfare sherben summarization ne routing design?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-routers-q3" value="a" class="quiz-option-radio"><span>A) Rritje e tabeles pa kontroll</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-routers-q3" value="b" class="quiz-option-radio"><span>B) Ulja e churn dhe stabilitet me i mire</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-routers-q3" value="c" class="quiz-option-radio"><span>C) Rritje e packet loss</span></label>
+          </div>
+
+          <button class="btn btn-outline" type="button" onclick="gradeExam('exam-routers', ['a','c','b'])">Kontrollo Rezultatin</button>
+          <div class="quiz-feedback" id="exam-routers-feedback"></div>
+        </div>        <div class="table-container">
+          <table>
+            <thead><tr><th>Domain</th><th>What to Standardize</th><th>Target Outcome</th></tr></thead>
+            <tbody>
+              <tr><td>Design</td><td>Templates, naming, environment separation</td><td>Predictable deployments</td></tr>
+              <tr><td>Security</td><td>Least privilege, policy review, logging</td><td>Lower operational risk</td></tr>
+              <tr><td>Operations</td><td>Runbooks, alerts, rollback strategy</td><td>Faster incident recovery</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-container"><div class="code-header"><div class="code-title">Router Health Commands</div><span class="code-lang-badge">IOS-XE</span></div><pre><code>show ip route summary
+show ip ospf neighbor
+show ip bgp summary</code></pre></div>
+
+        <div class="callout callout-info"><div class="callout-title">Practical Checklist</div><div class="callout-content">Dokumento baseline, valido ndryshimet ne mjedis test, vendos approval gate, monitoro pas deployment-it dhe mbaj rollback plan gjithmone gati.</div></div>
+      </div></section>
+    </main>
+  </div>
+  <script src="../data/topic-config.js"></script>
+  <script src="../data/topic-config-loader.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>
+
+
+
+
+
+

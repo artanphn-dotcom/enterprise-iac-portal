@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="sq" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F5 Load Balancers - Enterprise Track</title>
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-icon">F5</div>
+          <div>
+            <span class="logo-text">F5 Load Balancers</span>
+            <span class="logo-sub">BIG-IP LTM and Application Delivery</span>
+          </div>
+        </div>
+        <div class="search-wrapper"><a class="btn btn-outline" href="../menu.html" style="text-decoration:none;">← Menu</a></div>
+      </div>
+      <nav class="sidebar-menu" id="sidebar-menu"></nav>
+    </aside>
+    <main class="main-workspace">
+      <header class="app-header">
+        <div class="header-title-section"><button class="btn-theme-toggle" id="btn-menu-toggle" style="display:none;">☰</button><h2 class="header-active-chapter-name">F5 Load Balancers</h2></div>
+        <div class="header-actions"><button class="btn btn-outline" onclick="location.href='../menu.html'">Menu</button><button class="btn-theme-toggle" id="btn-theme-toggle" title="Ndrysho Temen"><svg class="sun-icon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3"></path></svg></button></div>
+      </header>
+      <section class="content-area"><div class="content-inner">
+        <div class="welcome-screen"><div class="welcome-badge">Application Delivery</div><h1 class="welcome-title">F5 Load Balancers</h1><p class="welcome-desc">Detaje enterprise per traffic engineering, SSL offload dhe operim te qendrueshem ne F5.</p></div>
+
+        <h2 id="sec-1" class="sub-title">1. ADC Object Model</h2>
+        <p>Virtual servers, pools, nodes dhe monitors duhet te projektohen me konvencione te qarta emertimi. Nje model i paorganizuar vështireson troubleshooting dhe ndryshimet. Objektet e standardizuara rrisin qartesine per cdo ekip.</p>
+
+        <h2 id="sec-2" class="sub-title">2. Load Balancing Strategy</h2>
+        <p>Zgjedh metoda balancing sipas natyres se aplikacionit: least-connections, round-robin ose ratio. Persistenca duhet te perdoret vetem kur eshte e nevojshme funksionalisht. Ky kompromis balancon performance me sjellje korrekte te aplikacionit.</p>
+
+        <h2 id="sec-3" class="sub-title">3. TLS and Certificate Lifecycle</h2>
+        <p>SSL profiles duhet te permbajne cipher policy moderne dhe certifikata me lifecycle te menaxhuar. Automatizo rinovimet kur mundesh dhe monitoro expiry dates aktivisht. Problemet me certifikata jane shkak i shpeshte i incidenteve te evitueshme.</p>
+
+        <h2 id="sec-4" class="sub-title">4. Health Monitoring and Failover</h2>
+        <p>Monitors duhet te jenë application-aware, jo vetem TCP open checks. Defino threshold-e dhe timeout sipas sjelljes reale te backend-it. Kjo shmang failover te rreme dhe mban stabilitet ne trafik.</p>
+
+        <h2 id="sec-5" class="sub-title">5. WAF and Advanced Policies</h2>
+        <p>Per aplikacione kritike, integro LTM me WAF dhe profile te dedikuara sigurie. Nderto process tuning per false positives ne menyre iterative me ekipin e aplikacionit. Qellimi eshte mbrojtje pa demtuar user experience.</p>
+
+        <h2 id="sec-6" class="sub-title">6. Runbooks and Change Safety</h2>
+        <p>Nderto runbooks per deploy, rollback dhe emergency disable scenarios. Cdo ndryshim ne iRules ose profile duhet te testohet paraprakisht ne mjedis jo-prodhim. Disiplina operative shmang downtime gjate peak hours.</p>
+
+                <h2 id="sec-7" class="sub-title">7. Lab Exercises</h2>
+        <h3 class="sub-sub-title">Lab 1: LTM object baseline</h3>
+        <ul>
+          <li>Krijo virtual server, pool dhe monitor me naming standard.</li>
+          <li>Konfiguro method balancing sipas workload profile.</li>
+          <li>Verifiko health-state transitions ne runtime.</li>
+        </ul>
+        <h3 class="sub-sub-title">Lab 2: TLS hardening</h3>
+        <ul>
+          <li>Apliko SSL profile me ciphers moderne.</li>
+          <li>Testo cert expiry alerts dhe renewal process.</li>
+          <li>Dokumento rollback ne rast incompatibility.</li>
+        </ul>
+
+        <h2 id="sec-8" class="sub-title">8. Knowledge Check</h2>
+        <div class="quiz-widget" id="quiz-f5-deep">
+          <div class="quiz-title">Pyetje</div>
+          <div class="quiz-question">Cila praktike eshte me e rendesishme per stabilitetin e pool-it?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer('quiz-f5-deep', 0, true)"><input type="radio" class="quiz-option-radio"><span>A) Health monitors application-aware</span></div>
+            <div class="quiz-option" onclick="checkAnswer('quiz-f5-deep', 1, false)"><input type="radio" class="quiz-option-radio"><span>B) Vetem ping checks per gjithcka</span></div>
+            <div class="quiz-option" onclick="checkAnswer('quiz-f5-deep', 2, false)"><input type="radio" class="quiz-option-radio"><span>C) Fikja e alerts</span></div>
+          </div>
+          <div class="quiz-feedback" id="quiz-f5-deep-feedback"></div>
+        </div>
+        
+        <h2 id="sec-9" class="sub-title">9. Scenario-Based Troubleshooting</h2>
+        <h3 class="sub-sub-title">Skenari</h3>
+        <p>Nje pool shfaq degraded status edhe pse backend-et duken online</p>
+        <ol>
+          <li>Verifiko monitor type dhe expected response payload.</li>
+          <li>Kontrollo SSL profile mismatch ose timeout values ne virtual server.</li>
+          <li>Krahaso metrics runtime dhe bej failover test te kontrolluar.</li>
+        </ol>
+
+        <h2 id="sec-10" class="sub-title">10. Exam Mode</h2>
+        <div class="quiz-widget" id="exam-f5-loadbalancers">
+          <div class="quiz-title">Mini Exam</div>
+          <div class="quiz-question">1) Per stabilitet pool-i, cfare rekomandohet?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q1" value="a" class="quiz-option-radio"><span>A) Health monitor application-aware</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q1" value="b" class="quiz-option-radio"><span>B) Vetem ping check per gjithcka</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q1" value="c" class="quiz-option-radio"><span>C) Fikje alerts</span></label>
+          </div>
+
+          <div class="quiz-question">2) Persistenca duhet perdorur:</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q2" value="a" class="quiz-option-radio"><span>A) Gjithmone pa perjashtim</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q2" value="b" class="quiz-option-radio"><span>B) Vetem kur aplikacioni e kerkon</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q2" value="c" class="quiz-option-radio"><span>C) Asnjehere</span></label>
+          </div>
+
+          <div class="quiz-question">3) Para ndryshimit ne iRules ne prod:</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q3" value="a" class="quiz-option-radio"><span>A) Deploy direkt</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q3" value="b" class="quiz-option-radio"><span>B) Fshi backup-et</span></label>
+            <label class="quiz-option"><input type="radio" name="exam-f5-loadbalancers-q3" value="c" class="quiz-option-radio"><span>C) Testo ne non-prod dhe pergatit rollback</span></label>
+          </div>
+
+          <button class="btn btn-outline" type="button" onclick="gradeExam('exam-f5-loadbalancers', ['a','b','c'])">Kontrollo Rezultatin</button>
+          <div class="quiz-feedback" id="exam-f5-loadbalancers-feedback"></div>
+        </div>        <div class="table-container">
+          <table>
+            <thead><tr><th>Domain</th><th>What to Standardize</th><th>Target Outcome</th></tr></thead>
+            <tbody>
+              <tr><td>Design</td><td>Templates, naming, environment separation</td><td>Predictable deployments</td></tr>
+              <tr><td>Security</td><td>Least privilege, policy review, logging</td><td>Lower operational risk</td></tr>
+              <tr><td>Operations</td><td>Runbooks, alerts, rollback strategy</td><td>Faster incident recovery</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-container"><div class="code-header"><div class="code-title">BIG-IP Runtime Checks</div><span class="code-lang-badge">tmsh</span></div><pre><code>tmsh show ltm virtual
+tmsh show ltm pool
+tmsh show sys connection</code></pre></div>
+
+        <div class="callout callout-info"><div class="callout-title">Practical Checklist</div><div class="callout-content">Dokumento baseline, valido ndryshimet ne mjedis test, vendos approval gate, monitoro pas deployment-it dhe mbaj rollback plan gjithmone gati.</div></div>
+      </div></section>
+    </main>
+  </div>
+  <script src="../data/topic-config.js"></script>
+  <script src="../data/topic-config-loader.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>
+
+
+
+
+
+

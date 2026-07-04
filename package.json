@@ -1,0 +1,12 @@
+{
+  "name": "gcp-global-vpc-diagram",
+  "version": "1.0.0",
+  "description": "Interactive Google Cloud Global VPC Architecture Diagram",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server . -p 0 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

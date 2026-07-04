@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sq" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise IaC Portal - Welcome</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-icon">EI</div>
+          <div>
+            <span class="logo-text">Enterprise IaC Portal</span>
+            <span class="logo-sub">Professional Main Menu</span>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-menu">
+        <div class="menu-chapter-title active">
+          <span class="menu-chapter-num">01</span>
+          <span class="menu-chapter-text">Start Here</span>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="progress-widget">
+          <div class="progress-text"><span>Ready to explore</span><span>100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-workspace">
+      <header class="app-header">
+        <div class="header-title-section">
+          <button class="btn-theme-toggle" id="btn-menu-toggle" style="display:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <h2 class="header-active-chapter-name">Welcome</h2>
+        </div>
+        <div class="header-actions">
+          <button class="btn-theme-toggle" id="btn-theme-toggle" title="Toggle theme">
+            <svg class="sun-icon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="content-area">
+        <div class="content-inner">
+          <div class="welcome-screen">
+            <div class="welcome-badge">Enterprise Learning Hub</div>
+            <h1 class="welcome-title">Welcome to the IaC Portal</h1>
+            <p class="welcome-desc">Start here for a clean, professional entry point into AWS, Azure, networking, firewall, VPN, and infrastructure-as-code content. Each module is structured for practical learning, examples, and operational validation.</p>
+
+            <div class="callout callout-info" style="margin-bottom: 1.5rem;">
+              <div class="callout-title">What You Can Do Here</div>
+              <div class="callout-content">Open a topic, review deep explanations, copy configuration examples, and move through the portal with a consistent enterprise navigation flow.</div>
+            </div>
+
+            <div class="welcome-grid">
+              <a class="welcome-card card-aws" href="123/aws.html"><div class="welcome-card-icon icon-aws" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 16.5h10a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 7.36 6.7 3.5 3.5 0 0 0 7 16.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="welcome-card-title">AWS</h3><p class="welcome-card-desc">Cloud governance, networking, IAM, and recovery.</p></a>
+              <a class="welcome-card card-azure" href="123/azure.html"><div class="welcome-card-icon icon-azure" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 7.5 12 4l7.5 3.5L12 11 4.5 7.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 12 12 15.5 19.5 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 16.5 12 20l7.5-3.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="welcome-card-title">Azure</h3><p class="welcome-card-desc">Landing zones, policy, RBAC, and design.</p></a>
+              <a class="welcome-card card-vpn" href="123/vpn.html"><div class="welcome-card-icon icon-vpn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 11v-1.5a5 5 0 0 1 10 0V11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><rect x="5.5" y="11" width="13" height="8.5" rx="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14v2" stroke="currentColor" stroke-linecap="round"/><path d="M12 14a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" fill="currentColor"/></svg></div><h3 class="welcome-card-title">VPN</h3><p class="welcome-card-desc">Crypto baselines, routing, and redundancy.</p></a>
+              <a class="welcome-card card-router" href="123/routers.html"><div class="welcome-card-icon icon-router" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="currentColor" stroke-linecap="round"/><path d="M8 9 5 12l3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9 19 12l-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2" stroke="currentColor"/></svg></div><h3 class="welcome-card-title">Routers</h3><p class="welcome-card-desc">OSPF, BGP, WAN failover, and checks.</p></a>
+              <a class="welcome-card card-switch" href="123/cisco-switches.html"><div class="welcome-card-icon icon-switch" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="10" rx="2" stroke="currentColor"/><path d="M7 10h1M10 10h1M13 10h1M16 10h1" stroke="currentColor" stroke-linecap="round"/><path d="M7 14h10" stroke="currentColor" stroke-linecap="round"/></svg></div><h3 class="welcome-card-title">Switches</h3><p class="welcome-card-desc">VLANs, trunks, STP, and EVPN basics.</p></a>
+              <a class="welcome-card card-firepower" href="123/firepower.html"><div class="welcome-card-icon icon-firepower" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-3Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 12.5 11 14l3.5-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="welcome-card-title">Firepower</h3><p class="welcome-card-desc">Policy, IPS, NAT, VPN, and HA operations.</p></a>
+              <a class="welcome-card card-forti" href="123/forti.html"><div class="welcome-card-icon icon-forti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5.5 6v5c0 4 2.6 7.4 6.5 9 3.9-1.6 6.5-5 6.5-9V6L12 3Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="m8.5 12 2 2 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="welcome-card-title">FortiGate</h3><p class="welcome-card-desc">Policy, SD-WAN, VDOMs, and failover.</p></a>
+              <a class="welcome-card card-paloalto" href="123/palo-alto.html"><div class="welcome-card-icon icon-paloalto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4 5 7v4c0 4.5 3 8 7 9 4-1 7-4.5 7-9V7l-7-3Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12.5a4 4 0 0 1 8 0" stroke="currentColor" stroke-linecap="round"/><path d="M10 12.5a2 2 0 0 1 4 0" stroke="currentColor" stroke-linecap="round"/></svg></div><h3 class="welcome-card-title">Palo Alto</h3><p class="welcome-card-desc">App-ID, threat profiles, Panorama, and HA.</p></a>
+              <a class="welcome-card card-f5" href="123/f5-loadbalancers.html"><div class="welcome-card-icon icon-f5" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="5" rx="1.5" stroke="currentColor"/><rect x="4" y="14" width="16" height="5" rx="1.5" stroke="currentColor"/><path d="M9 7.5h6M9 16.5h6" stroke="currentColor" stroke-linecap="round"/></svg></div><h3 class="welcome-card-title">F5</h3><p class="welcome-card-desc">VIPs, pools, persistence, WAF, and sync.</p></a>
+              <a class="welcome-card card-iac" href="IaC.html"><div class="welcome-card-icon icon-iac" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 8 5 12l4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 8 19 12l-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 5 10 19" stroke="currentColor" stroke-linecap="round"/><path d="M11 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="welcome-card-title">IaC Program</h3><p class="welcome-card-desc">Terraform roadmap and structured delivery.</p></a>
+            </div>
+
+            <div style="margin-top:1.75rem; padding-top:1rem; border-top:1px solid var(--border-color); text-align:center; color:var(--text-muted); font-size:0.85rem; letter-spacing:0.02em;">
+              © 2026 Artan Vitija
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="data/topic-config.js"></script>
+  <script src="data/topic-config-loader.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
+
+
+
+
